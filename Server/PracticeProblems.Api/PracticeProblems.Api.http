@@ -1,0 +1,6 @@
+@PracticeProblems.Api_HostAddress = https://localhost:3030
+
+GET {{PracticeProblems.Api_HostAddress}}/PracticeProblems/
+Accept: application/json
+
+###

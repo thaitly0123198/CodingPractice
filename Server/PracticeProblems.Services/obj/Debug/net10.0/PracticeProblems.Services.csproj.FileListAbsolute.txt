@@ -1,0 +1,15 @@
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\bin\Debug\net10.0\PracticeProblems.Services.deps.json
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\bin\Debug\net10.0\PracticeProblems.Services.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\bin\Debug\net10.0\PracticeProblems.Services.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\bin\Debug\net10.0\PracticeProblems.Core.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\bin\Debug\net10.0\PracticeProblems.Core.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.csproj.AssemblyReference.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.AssemblyInfoInputs.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.AssemblyInfo.cs
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.csproj.CoreCompileInputs.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\Practice.0153C2E9.Up2Date
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\refint\PracticeProblems.Services.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\ref\PracticeProblems.Services.dll

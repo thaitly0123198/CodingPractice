@@ -1,0 +1,15 @@
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\bin\Debug\net10.0\PracticeProblems.Data.deps.json
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\bin\Debug\net10.0\PracticeProblems.Data.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\bin\Debug\net10.0\PracticeProblems.Data.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\bin\Debug\net10.0\PracticeProblems.Core.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\bin\Debug\net10.0\PracticeProblems.Core.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.csproj.AssemblyReference.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.AssemblyInfoInputs.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.AssemblyInfo.cs
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.csproj.CoreCompileInputs.cache
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\Practice.F2C9D14B.Up2Date
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\refint\PracticeProblems.Data.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\PracticeProblems.Data.pdb
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Data\obj\Debug\net10.0\ref\PracticeProblems.Data.dll
