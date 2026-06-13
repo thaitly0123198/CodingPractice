@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T87eqLyrzqQ=",
+  "dgSpecHash": "ZYRxoUdh8tQ=",
   "success": true,
-  "projectFilePath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
+  "projectFilePath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tstar\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\tstar\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",

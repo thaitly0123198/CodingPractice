@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {}
   },
@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj",
+      "projectUniqueName": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj",
       "projectName": "PracticeProblems.Core",
-      "projectPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj",
+      "projectPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj",
       "packagesPath": "C:\\Users\\tstar\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\obj\\",
+      "outputPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tstar\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -30,6 +30,7 @@
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -48,6 +49,7 @@
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "imports": [
           "net461",

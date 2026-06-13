@@ -37,3 +37,4 @@ C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.A
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Api\obj\Debug\net10.0\PracticeProblems.Api.pdb
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Api\obj\Debug\net10.0\PracticeProblems.Api.genruntimeconfig.cache
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Api\obj\Debug\net10.0\ref\PracticeProblems.Api.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Api\obj\Debug\net10.0\PracticeProblems.Api.sourcelink.json

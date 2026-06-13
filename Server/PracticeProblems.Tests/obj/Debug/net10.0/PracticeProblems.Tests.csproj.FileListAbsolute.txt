@@ -102,3 +102,4 @@ C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.T
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Tests\obj\Debug\net10.0\PracticeProblems.Tests.pdb
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Tests\obj\Debug\net10.0\PracticeProblems.Tests.genruntimeconfig.cache
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Tests\obj\Debug\net10.0\ref\PracticeProblems.Tests.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Tests\obj\Debug\net10.0\PracticeProblems.Tests.sourcelink.json

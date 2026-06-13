@@ -13,3 +13,4 @@ C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.S
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\refint\PracticeProblems.Services.dll
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.pdb
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\ref\PracticeProblems.Services.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Services\obj\Debug\net10.0\PracticeProblems.Services.sourcelink.json

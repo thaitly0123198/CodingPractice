@@ -9,3 +9,4 @@ C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.C
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Core\obj\Debug\net10.0\refint\PracticeProblems.Core.dll
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Core\obj\Debug\net10.0\PracticeProblems.Core.pdb
 C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Core\obj\Debug\net10.0\ref\PracticeProblems.Core.dll
+C:\Users\tstar\OneDrive\Desktop\Pr0ject\My ACM website\Server\PracticeProblems.Core\obj\Debug\net10.0\PracticeProblems.Core.sourcelink.json

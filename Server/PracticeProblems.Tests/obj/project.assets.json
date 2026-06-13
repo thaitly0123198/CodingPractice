@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "coverlet.collector/6.0.4": {
@@ -973,11 +973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
       "projectName": "PracticeProblems.Tests",
-      "projectPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
+      "projectPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\PracticeProblems.Tests.csproj",
       "packagesPath": "C:\\Users\\tstar\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\obj\\",
+      "outputPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tstar\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -990,16 +990,17 @@
       },
       "frameworks": {
         "net10.0": {
+          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj": {
-              "projectPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj"
+            "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj": {
+              "projectPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Core\\PracticeProblems.Core.csproj"
             },
-            "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Data\\PracticeProblems.Data.csproj": {
-              "projectPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Data\\PracticeProblems.Data.csproj"
+            "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Data\\PracticeProblems.Data.csproj": {
+              "projectPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Data\\PracticeProblems.Data.csproj"
             },
-            "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Services\\PracticeProblems.Services.csproj": {
-              "projectPath": "c:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Services\\PracticeProblems.Services.csproj"
+            "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Services\\PracticeProblems.Services.csproj": {
+              "projectPath": "C:\\Users\\tstar\\OneDrive\\Desktop\\Pr0ject\\My ACM website\\Server\\PracticeProblems.Services\\PracticeProblems.Services.csproj"
             }
           }
         }
@@ -1018,6 +1019,7 @@
     },
     "frameworks": {
       "net10.0": {
+        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
