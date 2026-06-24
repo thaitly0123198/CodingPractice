@@ -1,3 +1,3 @@
 namespace PracticeProblems.Api.Contracts;
 
-public record ProblemsChunkResponse(int Id, string Title, string Difficulty); 
+public record ProblemsChunkResponse(string Id, string Title, string Difficulty); 

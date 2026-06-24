@@ -8,8 +8,7 @@ namespace PracticeProblems.Data.Repo;
 
 public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
 {
-    // connect to mongo db later, for now just return mock data
-    // private readonly IMongoCollection<Problem> _problems = mongoContext.Problems;
+    // get the Problem collection from mongo
     private readonly IMongoCollection<Problem> _problems = mongoContext.Problems;
 
     public async Task<List<Problem>> GetProblemsAsync()

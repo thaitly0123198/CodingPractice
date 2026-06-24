@@ -12,18 +12,10 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
     [HttpGet]
     public async Task<ActionResult<List<ProblemsChunkResponse>>> GetProblems()
     {
-
-        // mock data for now, will be replaced with actual data from the database later
-        var problems = new ProblemsChunkResponse[]
-        {
-            new(1, "Calculate Sum", "Easy"),
-            new(2, "Check Palindrome", "Medium"),
-            new(3, "Check repeats in unordered list", "Hard")
-        };
-
         // getting the actual data from the db thru the service layer
         var problemsList = await problemsService.GetProblemsAsync();
 
-        return Ok(problems);
+        return Ok(problemsList.Select(p => new ProblemsChunkResponse(p.Id, p.Title, p.Difficulty)).ToList());
+    
     }
 }
