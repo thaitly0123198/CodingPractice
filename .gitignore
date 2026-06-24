@@ -1,2 +1,81 @@
+# ---- Project-specific ignores (existing) ----
 .env
 CLAUDE.md
+
+# ============================================================
+# Node / Frontend (Client)
+# ============================================================
+node_modules/
+# Vite / build output
+dist/
+dist-ssr/
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Caches
+.vite/
+.eslintcache
+.cache/
+
+# ============================================================
+# .NET / Backend (Server)
+# ============================================================
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+[Oo]ut/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Test results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Local user files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ============================================================
+# IDE / Editor
+# ============================================================
+.vscode/
+.vs/
+.idea/
+*.swp
+*.swo
+
+# ============================================================
+# OS
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# Environment / secrets
+# ============================================================
+.env.*
+!.env.example
+appsettings.*.local.json

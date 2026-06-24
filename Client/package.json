@@ -7,9 +7,13 @@
   "type": "module",
   "main": "main.jsx",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "node src/main.jsx"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.18.0",
     "@tanstack/react-query": "^5.101.0",
     "@tanstack/react-query-devtools": "^5.101.0",
     "dotenv": "^17.4.2",
@@ -20,9 +24,11 @@
     "react-router-dom": "^7.17.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^10.4.1",
     "openapi-typescript-codegen": "^0.30.0",
     "prettier": "^3.8.4",
+    "vite": "^8.0.16",
     "vite-express": "^0.22.1"
   }
 }

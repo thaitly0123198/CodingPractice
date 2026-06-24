@@ -1,45 +1,56 @@
-var builder = WebApplication.CreateBuilder(args);
+using PracticeProblems.Api.Controllers;
+using PracticeProblems.Services.MainServices;
+using PracticeProblems.Core.Interfaces;
+using PracticeProblems.Data;
+using PracticeProblems.Data.Repo;
 
-// Add services to the container.
 
+var builder = WebApplication.CreateBuilder();
+
+
+// Add services
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// add mongodb
+var mongoSettings = builder.Configuration.GetSection("MongoDb").Get<MongoDbSettings>() ?? new MongoDbSettings();
+builder.Services.AddSingleton(mongoSettings);
+builder.Services.AddSingleton<MongoContext>();
 
-var myAllowOrigins = builder.Configuration.GetSection("allowOrigins").Get<string[]>();    
-var myAllowOriginPolicyName = "AllowedSpecifiedOrigins";
+// DI
+// add controllers
+builder.Services.AddSingleton<ProblemsController>();
 
+// add services
+builder.Services.AddSingleton<ProblemsService>();
+
+// add db repo
+builder.Services.AddSingleton<IProblemsRepo, ProblemsRepo>();
+
+const string corsPolicyName = "AllowSpecifiedOrigins";
+string[] allowedOrigins = { "http://localhost:8080" };
+
+
+// allow cors for the frontend to access the backend in dev 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: myAllowOriginPolicyName,
-        policy =>
-        {
-            if (myAllowOrigins != null && myAllowOrigins.Length > 0)        
-            {
-                policy.WithOrigins(myAllowOrigins)
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            }
-            else {throw new InvalidOperationException("No allowed origins recognized in configuration.");}
-        });
+    options.AddPolicy(corsPolicyName, policy =>
+    {   
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
-    
-    
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-app.UseCors(myAllowOriginPolicyName);
-
-app.UseAuthorization();
-
+app.UseCors(corsPolicyName);
 app.MapControllers();
-
+app.MapOpenApi();
 app.Run();
+
+
+
+
+
+

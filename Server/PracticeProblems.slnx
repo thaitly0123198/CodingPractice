@@ -3,5 +3,4 @@
   <Project Path="PracticeProblems.Core/PracticeProblems.Core.csproj" />
   <Project Path="PracticeProblems.Data/PracticeProblems.Data.csproj" />
   <Project Path="PracticeProblems.Services/PracticeProblems.Services.csproj" />
-  <Project Path="PracticeProblems.Tests/PracticeProblems.Tests.csproj" />
 </Solution>

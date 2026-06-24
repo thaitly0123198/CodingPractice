@@ -1,20 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
+using PracticeProblems.Api.Contracts;
+using PracticeProblems.Services.MainServices;
 
 namespace PracticeProblems.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class ProblemsController : Controller
+[Route("api/problems")]
+public class ProblemsController(ProblemsService problemsService) : ControllerBase
 {
     // GET
     [HttpGet]
-    public IActionResult GetProblems()
+    public async Task<ActionResult<List<ProblemsChunkResponse>>> GetProblems()
     {
-        var problems = new[]
+
+        // mock data for now, will be replaced with actual data from the database later
+        var problems = new ProblemsChunkResponse[]
         {
-            new { id = 1, title = "Two-Sum", difficulty = "Easy" },
-            new { id = 2, title = "Reverse String", difficulty = "Medium" }
+            new(1, "Calculate Sum", "Easy"),
+            new(2, "Check Palindrome", "Medium"),
+            new(3, "Check repeats in unordered list", "Hard")
         };
+
+        // getting the actual data from the db thru the service layer
+        var problemsList = await problemsService.GetProblemsAsync();
 
         return Ok(problems);
     }
