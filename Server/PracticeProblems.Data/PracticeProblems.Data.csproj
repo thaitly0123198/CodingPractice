@@ -2,9 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PracticeProblems.Core\PracticeProblems.Core.csproj" />
-  </ItemGroup>
-
-    <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="3.9.0" />
   </ItemGroup>
 

@@ -1,7 +1,4 @@
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using PracticeProblems.Core.Entities;
 
@@ -15,16 +12,17 @@ public class MongoContext
     // define gateway to CRUD + queries + indexes on collections 
     public IMongoCollection<Problem> Problems { get; }
 
-    // mapping c# entities class to mongo document
+    // mapping c# entities class to Problem document
     static MongoContext(){
         BsonClassMap.RegisterClassMap<Problem>(classMap =>
             {
-                classMap.MapIdMember(pblm => pblm.Id)
-                    .SetIdGenerator(StringObjectIdGenerator.Instance);
+                classMap.AutoMap();
+                classMap.MapIdMember(pblm => pblm.Id);
                 classMap.MapMember(pblm => pblm.Title);
-                classMap.MapMember(pblm => pblm.LongDescription);
-                classMap.MapMember(pblm => pblm.ShortDescription);
+                classMap.MapMember(pblm => pblm.Description);
+                classMap.MapMember(pblm => pblm.Examples);
                 classMap.MapMember(pblm => pblm.Difficulty);
+                classMap.MapMember(pblm => pblm.Category);
             });
     }
 

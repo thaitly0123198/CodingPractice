@@ -5,7 +5,7 @@ using PracticeProblems.Services.MainServices;
 namespace PracticeProblems.Api.Controllers;
 
 [ApiController]
-[Route("api/problems")]
+[Route("nav/problems")]
 public class ProblemsController(ProblemsService problemsService) : ControllerBase
 {
     // GET
@@ -15,7 +15,15 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
         // getting the actual data from the db thru the service layer
         var problemsList = await problemsService.GetProblemsAsync();
 
-        return Ok(problemsList.Select(p => new ProblemsChunkResponse(p.Id, p.Title, p.Difficulty)).ToList());
     
+        return Ok(problemsList.Select(p => new ProblemsChunkResponse(p.Id, p.Title, p.Difficulty)).ToList());
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ProblemByIdResponse>> GetSingleProblem(string id)
+    {
+        // to do: id == null
+        var problem = await problemsService.GetProblemByIdAsync(id);
+        return Ok(problem);
     }
 }

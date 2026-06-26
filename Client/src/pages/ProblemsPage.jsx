@@ -8,8 +8,6 @@ export default function Practice () {
         <div>
             <div> Practice Problem</div>
             <ProblemsTable />
-
-
         </div>
     )
 

@@ -1,8 +1,9 @@
 // root compoent of the react 
-import { Link, Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import HomePage from './pages/HomePage';
 import ProblemsPage from './pages/ProblemsPage';
+import SingleProblemPage from './pages/SingleProblemPage';
 
 function RequireAuth({ children }) {
    const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
@@ -33,7 +34,7 @@ function RequireAuth({ children }) {
 function Navbar() { return (
     <nav className="navbar">
     <Link to="/home" className="home"> Coding Practice == </Link>
-    <Link to="/practice" className="practice"> Practice == </Link>
+    <Link to="/problems" className="problems"> Practice == </Link>
     <Link to="/rank" className="ranklist"> Rank == </Link>
     <Link to={{
         pathname: "/profile",
@@ -47,16 +48,17 @@ export default function App() {
     return (
         <>
             <Navbar /> 
-            <main className="main">
+            <main className="container">
                 <Routes>
                     <Route path="/home" element={<  HomePage />} />
-                    <Route path="/practice" element={< ProblemsPage />} />
+                    <Route path="/problems" element={< ProblemsPage />} />
                     <Route path="/rank" element={<h1>Rank</h1>} />
                     <Route path="/profile" element={
                         // <RequireAuth>
                             <h1>Profile</h1>
                         /* </RequireAuth> */
                     } />
+                    <Route path="/problems/:id" element={<SingleProblemPage/>}/>
                     <Route path="*" element={<Navigate to="/home" />} />    
                 </Routes>
             </main>

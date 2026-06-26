@@ -1,6 +1,6 @@
 # ---- Project-specific ignores (existing) ----
 .env
-CLAUDE.md
+ARCHITECTURE_FLOW.md
 
 # ============================================================
 # Node / Frontend (Client)
@@ -56,6 +56,7 @@ artifacts/
 *.suo
 *.userosscache
 *.sln.docstates
+scraped.json
 
 # ============================================================
 # IDE / Editor

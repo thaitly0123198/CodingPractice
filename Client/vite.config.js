@@ -6,5 +6,13 @@ export default defineConfig({
   server: {
     port: 8080,
     open: true,
-  },
+    proxy: {
+      // Shortens fetch('/api/users') to http://localhost:5000/api/users
+      '/nav': {
+        target: 'http://localhost:8090', // Your backend server port
+        changeOrigin: false,
+        secure: true,
+      }
+    }
+  }
 })
