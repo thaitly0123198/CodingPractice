@@ -12,7 +12,7 @@ export default function ProblemsTable () {
         }).then(async (res) => {
             const data = await res.json().catch(() => null);
             setProblems(data);
-            // console.log(res)
+            // console.log(data)
         })
     }, []);
 

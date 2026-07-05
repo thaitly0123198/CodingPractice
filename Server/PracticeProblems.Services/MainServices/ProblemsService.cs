@@ -15,4 +15,19 @@ public class ProblemsService(IProblemsRepo problems)
         return problems.GetProblemByIdAsync(id);
     }
 
+    // todo: persist user's submission result to a collection in the database
+    public Task<SubmittedSolution> SaveResultByIdTaskAsync(string id, string solution)
+    {
+        return problems.SaveResultByIdTaskAsync(id, solution);
+    }
+
+    public Task<SubmittedSolution> SubmitSolutionAsync(string id, string solution)
+    {
+        // todo 2: check if the solution is correct or not, and return the result to the user
+        //         - create worker service that will run the solution against the test cases and return the result
+
+        // just return the submitted solution for now
+        return new Task<SubmittedSolution>(() => new SubmittedSolution(id, solution));
+    }
+
 }

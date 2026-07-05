@@ -35,12 +35,9 @@ export default function() {
                 )
             }
             </div>
-            <span>Solve Now!</span>    
             <div>
                 <SolutionInputBox/>
             </div>
-            
-        
         </div>
     )
 };

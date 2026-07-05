@@ -23,5 +23,19 @@ public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
     {
         return await _problems.Find(problem => problem.Id == id).FirstOrDefaultAsync();
     }
+
+    public async Task<SubmittedSolution> PostSolutionAsync(string id, string solution)
+    {
+        // todo: check if the solution is correct or not, and return the result to the user
+        // for now, just return the submitted solution
+        return await Task.FromResult(new SubmittedSolution(id, solution));
+    }
+
+    public async Task<SubmittedSolution> SaveResultByIdTaskAsync(string id, string solution)
+    {
+        // todo: persist the submitted solution to the database
+        // for now, just return the submitted solution
+        return await Task.FromResult(new SubmittedSolution(id, solution));  
+    }
 }
 

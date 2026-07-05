@@ -16,7 +16,7 @@ public class MongoContext
     static MongoContext(){
         BsonClassMap.RegisterClassMap<Problem>(classMap =>
             {
-                classMap.AutoMap();
+                classMap.AutoMap(); 
                 classMap.MapIdMember(pblm => pblm.Id);
                 classMap.MapMember(pblm => pblm.Title);
                 classMap.MapMember(pblm => pblm.Description);
@@ -33,5 +33,7 @@ public class MongoContext
 
         Problems = database.GetCollection<Problem>("problems");
     }
+
+    //todo: add a collection for submission results, persist each user's results to the database
 
 }

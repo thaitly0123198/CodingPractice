@@ -26,4 +26,16 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
         var problem = await problemsService.GetProblemByIdAsync(id);
         return Ok(problem);
     }
+
+    [HttpPost("{id}/submit")]
+    public async Task<ActionResult<SubmittedSolution>> SubmitSolution(string id, [FromBody] SubmittedSolution request)
+    {
+        if (id == null || id == "" || request == null || request.Solution == null || request.Solution == "")
+        {
+            return BadRequest("missing problem id");
+        }
+
+        var result = await problemsService.PostSolutionAsync(id, request.Solution);
+        return Ok(result);
+    }
 }
