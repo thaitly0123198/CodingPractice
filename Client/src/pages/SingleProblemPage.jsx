@@ -1,18 +1,19 @@
 import {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import SolutionInputBox from "../components/SolutionInputBox";
 
 export default function() {
+    const pid = useLocation().state.id || useParams().id;
     const [problem, setProblem] = useState({});
-    const id = useParams().id;
-    // console.log(id)
+
+    //console.log(pid)
     useEffect(() => {
-        const res = fetch(`/nav/problems/${id}`, {method: 'GET', headers: { 'Content-Type': 'application/json' }
+        const res = fetch(`/nav/problems/${pid}`, {method: 'GET', headers: { 'Content-Type': 'application/json' }
         }).then(async (res) => {
             const data = await res.json().catch(() => null);
             setProblem(data);
         })
-    }, [id]);
+    }, []);
 
     return(
         <div>
@@ -36,7 +37,7 @@ export default function() {
             }
             </div>
             <div>
-                <SolutionInputBox/>
+                <SolutionInputBox problemId={pid} />
             </div>
         </div>
     )

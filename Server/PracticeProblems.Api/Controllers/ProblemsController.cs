@@ -27,15 +27,21 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
         return Ok(problem);
     }
 
-    [HttpPost("{id}/submit")]
+    [HttpPost("submission/{id}")]
     public async Task<ActionResult<SubmittedSolution>> SubmitSolution(string id, [FromBody] SubmittedSolution request)
     {
-        if (id == null || id == "" || request == null || request.Solution == null || request.Solution == "")
+        if (id == "" || request == null || request.Solution == null || request.Solution == "")
         {
             return BadRequest("missing problem id");
         }
+        
+        Console.WriteLine($"ProblemsController: Received submission for problem id: {id}, solution: {request.Solution}");
 
+        // todo: check if the solution is correct or not, and return the result to the user
         var result = await problemsService.PostSolutionAsync(id, request.Solution);
+
+        // todo: persist the user result to the database
+        
         return Ok(result);
     }
 }

@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function submitSolution(e, solution) {
-    e.preventDefault();
-
-    // todo: send solution by id to backend
-    const response = await fetch(`/submission/${id}`, {
-        method: "POST",
-        headers: {
-          // Tell the backend we are sending JSON data
-          "Content-Type": "application/json", 
-        },
-        // 4. Convert our React state into a JSON object
-        body: JSON.stringify({ 
-          solution: solutionText 
-        })
-    });
-
-}
-
-export default function() {
+export default function({problemId}) {
     const [solution, setSolution] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [needSubmit, setNeedSubmit] = useState(false);
 
+    async function submitSolution(e, solution) {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // send solution by id to backend
+        try {
+            const response = await fetch(`/nav/problems/submission/${problemId}`, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json", 
+                },
+                body: JSON.stringify({id: problemId, solution: solution})
+            }).then(async (res) => {
+
+                const apires = await res.json().catch(() => null);
+                console.log((apires != null || apires != {}) ? apires : "No response from server");
+
+            });
+        } catch (error) {
+            console.error("Error submitting solution:", error); 
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+ 
+ 
     return (
         <div>
             <form onSubmit={(e) => submitSolution(e, solution)}>
@@ -34,7 +44,9 @@ export default function() {
                 >   
                 </textarea>
                 <div></div>
-                <input type="submit" value="Submit" />
+                <input type="submit" 
+                    value={isSubmitting ? "Sending..." : "Submit"} 
+                    disabled={isSubmitting || solution.trim() === ""} />
             </form>
         </div>
     )

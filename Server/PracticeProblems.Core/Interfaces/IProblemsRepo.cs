@@ -8,7 +8,7 @@ public interface IProblemsRepo
 
     Task<Problem> GetProblemByIdAsync(string id);
 
-    Task<SubmittedSolution> SaveResultByIdTaskAsync(string id, string solution);
+    Task<SubmittedSolution> PersistResultByIdTaskAsync(string id, string solution);
 
     Task<SubmittedSolution> PostSolutionAsync(string id, string solution);
 }

@@ -31,7 +31,7 @@ public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
         return await Task.FromResult(new SubmittedSolution(id, solution));
     }
 
-    public async Task<SubmittedSolution> SaveResultByIdTaskAsync(string id, string solution)
+    public async Task<SubmittedSolution> PersistResultByIdTaskAsync(string id, string solution)
     {
         // todo: persist the submitted solution to the database
         // for now, just return the submitted solution

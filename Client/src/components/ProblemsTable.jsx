@@ -40,7 +40,7 @@ export default function ProblemsTable () {
                                 {/* <td>{solved.has(p.id) ? <span className="solved">Solved</span> : <span className="muted">—</span>}</td> */}
                                 <td>
                                     {/* button to take user to a page to solve problem */}
-                                <Link className="btn btn-small" to={`${p.id}`}>
+                                <Link className="btn btn-small" to={`${p.id}`} state={{ id: p.id }}>
                                     Solve
                                 </Link>
                                 </td>
