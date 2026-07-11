@@ -1,6 +1,7 @@
 namespace PracticeProblems.Core.Entities;
 
-public class TestCase
+public class TestCase(string input, string expectedOutput)
 {
-    // input/Output pairs linked to a Problem
+    public string Input { get; set; } = input;
+    public string ExpectedOutput { get; set; } = expectedOutput;
 }

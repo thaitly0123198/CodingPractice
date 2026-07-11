@@ -23,6 +23,7 @@ builder.Services.AddSingleton<ProblemsController>();
 
 // add services
 builder.Services.AddSingleton<ProblemsService>();
+builder.Services.AddSingleton<IJudge, JudgeService>();
 
 // add db repo
 builder.Services.AddSingleton<IProblemsRepo, ProblemsRepo>();

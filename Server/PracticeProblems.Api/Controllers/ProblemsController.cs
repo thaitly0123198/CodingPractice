@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PracticeProblems.Api.Contracts;
+using PracticeProblems.Core.Entities;
 using PracticeProblems.Services.MainServices;
 
 namespace PracticeProblems.Api.Controllers;
@@ -28,7 +29,7 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
     }
 
     [HttpPost("submission/{id}")]
-    public async Task<ActionResult<SubmittedSolution>> SubmitSolution(string id, [FromBody] SubmittedSolution request)
+    public async Task<ActionResult<Result>> SubmitSolution(string id, [FromBody] Contracts.SubmittedSolution request)
     {
         if (id == "" || request == null || request.Solution == null || request.Solution == "")
         {
@@ -38,7 +39,7 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
         Console.WriteLine($"ProblemsController: Received submission for problem id: {id}, solution: {request.Solution}");
 
         // todo: check if the solution is correct or not, and return the result to the user
-        var result = await problemsService.PostSolutionAsync(id, request.Solution);
+        var result = await problemsService.GetResultsAsync(id, request.Solution);
 
         // todo: persist the user result to the database
         
