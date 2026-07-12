@@ -1,7 +1,10 @@
 namespace PracticeProblems.Core.Entities;
 
-public class TestCase(string input, string expectedOutput)
+public class TestCase
 {
-    public string Input { get; set; } = input;
-    public string ExpectedOutput { get; set; } = expectedOutput;
+    public string Input { get; set; } = string.Empty;
+    public string ExpectedOutput { get; set; } = string.Empty;
+    
+    // hide for test cases that are not to be shown to the user, but used for testing
+    public bool IsHidden { get; set; } = false;
 }
