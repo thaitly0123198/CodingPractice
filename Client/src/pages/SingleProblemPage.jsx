@@ -11,6 +11,8 @@ export default function() {
         const res = fetch(`/nav/problems/${pid}`, {method: 'GET', headers: { 'Content-Type': 'application/json' }
         }).then(async (res) => {
             const data = await res.json().catch(() => null);
+            console.log(data)
+
             setProblem(data);
         })
     }, []);
@@ -19,13 +21,14 @@ export default function() {
         <div>
             <div className="problem-description">
             {
-                // console.log(problem.examples),
+                // console.log(problem),
                 (problem === null || problem.empty) ? (<div>Loading problem...</div>) : 
                 (
                     <div>
                         <h1>{problem.title}</h1>
-                        <h3>{problem.category}</h3>
-                        <div>{problem.description}</div>
+                        <h3>{`Category: ${problem.category}`}</h3>
+                        <div>{problem.description}</div><br />
+                        <div style={{ fontWeight: 'bold' }}>{`Constraint(s): ${problem.constraint}`}</div><br />
                         <ul>
                             {
                                 (problem.examples == null || problem.examples.length == 0) ? (<div>Loading examples...</div>) :

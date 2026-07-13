@@ -12,6 +12,7 @@ public class ProblemsService(IProblemsRepo problems, IJudge judge)
 
     public Task<Problem> GetProblemByIdAsync(string id)
     {
+        Console.WriteLine($"ProblemsService->GetProblemByIdAsync: Getting problem with id: {id}");
         return problems.GetProblemByIdAsync(id);
     }
 

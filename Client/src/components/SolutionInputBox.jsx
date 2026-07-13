@@ -38,7 +38,7 @@ export default function({problemId}) {
                 <div></div>
                 <textarea 
                     placeholder="Paste your solution here..." 
-                    rows={10} cols={50}
+                    rows={30} cols={100}
                     id={`solution-submission`}
                     onChange={(e) => setSolution(e.target.value)}
                 >   

@@ -21,4 +21,8 @@ public class Problem
     public string Difficulty { get; set; } = null!; // easy, medium, hard
     [BsonElement("category")]
     public string Category { get; set; } = null!;
+    [BsonElement("constraint")]
+    public string Constraint { get; set; } = null!;
+    [BsonElement("testcases")]
+    public List<TestCase> TestCases { get; set; } = new();
 }

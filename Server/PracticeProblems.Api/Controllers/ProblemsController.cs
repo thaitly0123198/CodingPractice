@@ -24,14 +24,28 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
     public async Task<ActionResult<ProblemByIdResponse>> GetSingleProblem(string id)
     {
         // to do: id == null
+        if (string.IsNullOrEmpty(id))
+        {
+            return BadRequest("missing problem id");
+        }
+
         var problem = await problemsService.GetProblemByIdAsync(id);
-        return Ok(problem);
+        var responseChunk = new ProblemByIdResponse (
+            problem.Id,
+            problem.Title,
+            problem.Description,
+            problem.Constraint,
+            problem.Examples,
+            problem.Category
+            //,problem.TestCases
+        );
+        return Ok(responseChunk);
     }
 
     [HttpPost("submission/{id}")]
     public async Task<ActionResult<Result>> SubmitSolution(string id, [FromBody] Contracts.SubmittedSolution request)
     {
-        if (id == "" || request == null || request.Solution == null || request.Solution == "")
+        if (string.IsNullOrEmpty(id) || request == null || string.IsNullOrEmpty(request.Solution))
         {
             return BadRequest("missing problem id");
         }

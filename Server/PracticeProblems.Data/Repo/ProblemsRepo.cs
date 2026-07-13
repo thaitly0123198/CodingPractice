@@ -11,11 +11,10 @@ public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
     private readonly IMongoCollection<Problem> _problems = mongoContext.Problems;
 
     public async Task<List<Problem>> GetProblemsAsync()
-    {
-        // connect to mongo db later, for now just return mock data
+    { 
         return await _problems.Find(_ => true)
                 .SortBy(p => p.Title) // Sort lowest to highest
-                .Limit(10)  
+                .Limit(30)  
                 .ToListAsync();
     }
      

@@ -16,14 +16,20 @@ public class MongoContext
     static MongoContext(){
         BsonClassMap.RegisterClassMap<Problem>(classMap =>
             {
-                classMap.AutoMap(); 
-                classMap.MapIdMember(pblm => pblm.Id);
-                classMap.MapMember(pblm => pblm.Title);
-                classMap.MapMember(pblm => pblm.Description);
-                classMap.MapMember(pblm => pblm.Examples);
-                classMap.MapMember(pblm => pblm.Difficulty);
-                classMap.MapMember(pblm => pblm.Category);
+                classMap.AutoMap();
+                // classMap.MapIdMember(pblm => pblm.Id);
+                // classMap.MapMember(pblm => pblm.Title);
+                // classMap.MapMember(pblm => pblm.Description);
+                // classMap.MapMember(pblm => pblm.Examples);
+                // classMap.MapMember(pblm => pblm.Difficulty);
+                // classMap.MapMember(pblm => pblm.Category);
+                // classMap.MapMember(pblm => pblm.Constraint);
+                // classMap.MapMember(pblm => pblm.TestCases);
             });
+        BsonClassMap.RegisterClassMap<TestCase>(classMap =>
+        {
+            classMap.AutoMap();
+        });
     }
 
     public MongoContext(MongoDbSettings settings)
@@ -31,7 +37,7 @@ public class MongoContext
         var client = new MongoClient(settings.ConnectionString);
         var database = client.GetDatabase(settings.Database);
 
-        Problems = database.GetCollection<Problem>("problems");
+        Problems = database.GetCollection<Problem>("problemsets");
     }
 
     //todo: add a collection for submission results, persist each user's results to the database

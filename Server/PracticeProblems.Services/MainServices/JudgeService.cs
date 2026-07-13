@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Text.Json;
 using System.Security.Cryptography;
 using PracticeProblems.Core.Entities;
 using PracticeProblems.Core.Interfaces;
@@ -13,17 +14,28 @@ public class JudgeService : IJudge
         // using Add Binary for testing purposes, the test cases are:
         // Input: a = "11", b = "1" Output: "100"
         // Input: a = "1010", b = "1011" Output: "10101"
+        // due to scope of project: inputs and outputs types are only primitive types: int, string, [], dict, char,...
+
+        var testInput = new
+        {
+            a = "1010",
+            b = "1011"
+        };
+        // string testcaseOutput = "10101";
+
         string ext = GetFileExtension(language);
         string uniqueFileName = $"{Convert.ToHexString(RandomNumberGenerator.GetBytes(8))}.{ext}";
         string solutionPath = Path.Combine(Path.GetTempPath(), uniqueFileName);
 
-        // Create solution file with the solution code
         try
         {
+            // Create solution file with the solution code
             await CreateSolutionFile(solution, solutionPath);
 
+
+
             // Run the solution file with test case inputs, and get its outputs as list
-            var outputs = await RunPythonSolutionFileAgainstTestCases(solutionPath, problemId);
+            var outputs = await RunPythonSolutionFileAgainstTestCases(solutionPath, testInput);
 
             // Compare the output with the expected output for each test case
             
@@ -50,13 +62,13 @@ public class JudgeService : IJudge
     // TODO: add testcases to each problem in db as db->practiceproblems->problems->testcases->testcase1, testcase2, testcase3, etc
     // For now use problem->examples as test cases for the problem
 
-    private static async Task<Result> RunPythonSolutionFileAgainstTestCases(string solutionPath, string input)
+    private static async Task<Result> RunPythonSolutionFileAgainstTestCases(string solutionPath, object testInput)
     {
         // run the solution file with the given input and return the output
         // start a new process to run the solution file
         var processStartInfo = new ProcessStartInfo
         {
-            FileName = "python", // assuming python is installed and in PATH
+            FileName = "python3", // assuming python is installed and in PATH
             Arguments = $"{solutionPath}",
             RedirectStandardInput = true,
             RedirectStandardOutput = true,
@@ -64,13 +76,19 @@ public class JudgeService : IJudge
             UseShellExecute = false,
             CreateNoWindow = true
         };
-
-        var process = Process.Start(processStartInfo) ?? throw new InvalidOperationException("Failed to start the Python process.");
+        var process = Process.Start(processStartInfo);
+        if (process == null)
+        {
+            Console.WriteLine($"JudgeService.cs: Failed to start the Python process.");
+            throw new InvalidOperationException("Failed to start the Python process.");
+        }
 
         try
         {
-            Console.WriteLine($"JudgeService.cs: Running solution file with input: {input}");
-            await process.StandardInput.WriteAsync(input);
+            Console.WriteLine($"JudgeService.cs: Running solution file with input: {testInput}");
+
+            string testInputChars = JsonSerializer.Serialize(testInput);
+            await process.StandardInput.WriteAsync(testInputChars);
             process.StandardInput.Close();
         }
         catch (Exception ex)
@@ -88,7 +106,8 @@ public class JudgeService : IJudge
             if (!string.IsNullOrEmpty(error))
             {
                 Console.WriteLine($"JudgeService.cs: Error from solution file: {error}");
-                throw new InvalidOperationException($"Error from solution file: {error}");
+                return new Result(error);
+                // throw new InvalidOperationException($"Error from solution file: {error}");
             }
 
             Console.WriteLine($"JudgeService.cs: Output from solution file: {output}");

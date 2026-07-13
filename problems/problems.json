@@ -1,0 +1,71 @@
+[
+  {
+    "title": "Two Sum",
+    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+    "difficulty": "Easy",
+    "examples": [
+      "Input: nums = [5,7,7,8,8,10], target = 8\nOutput: [3,4]",
+      "Input: nums = [5,7,7,8,8,10], target = 6\nOutput: [-1,-1]",
+      "Input: nums = [], target = 0\nOutput: [-1,-1]"
+    ],
+    "constraint": "2 <= nums.length <= 104\n-109 <= nums[i] <= 109\n-109 <= target <= 109\nOnly one valid answer exists.",
+    "category": "Array",
+    "testcases": [
+        {
+            "nums" : [2,7,11,15],
+            "target": 9,
+            "output": [0,1],
+            "ishidden": false
+        },
+        {
+            "nums" : [3,2,4],
+            "target": 6,
+            "output": [1,2],
+            "ishidden": false
+        },
+        {
+            "nums" : [3,3],
+            "target": 6,
+            "output": [0,1],
+            "ishidden": false
+        },        
+        {
+            "nums" : [2069, 62,67,411,815,813,6380,29374,181,80,8723,8504,888,8563, 985,98315,12093,389850,29374,11,0,723,504,88983,70563, 37],
+            "target": 2106,
+            "output": [0,25],
+            "ishidden": true
+        },
+        {
+            "nums" : [209, 2,7,11,15,13,380,29374,11,0,723,504,88,70563, 985,983],
+            "target": 592,
+            "output": [11,12],
+            "ishidden": true
+        },
+        {
+            "nums" : [2,7,11,15,12093,389850,29374,11,0,723,504,88983,70563, 37],
+            "target": 37,
+            "output": [8,13],
+            "ishidden": true
+        },
+        {
+            "nums" : [2,7,11,15,12093,38, 98, 50,29374,11,0,723,504,889, 83,70, 563, 37],
+            "target": 153,
+            "output": [14,15],
+            "ishidden": true
+        },
+        {
+            "nums" : [209, 2,7,11,15,13,380,29, 3, 74,11,0,723,50, 4,88,705, 63, 985,983],
+            "target": 1968,
+            "output": [11,12],
+            "ishidden": true
+        },
+        {
+            "nums" : [2069, 62,67,411,815,813,888,85, 63, 985,983, 15,120, 93,38, 9,8, 50,29374,11,2,723,504,88983,705, 63, 37],
+            "target": 17,
+            "output": [18,19],
+            "ishidden": true
+        }
+    ]
+  },
+
+]
