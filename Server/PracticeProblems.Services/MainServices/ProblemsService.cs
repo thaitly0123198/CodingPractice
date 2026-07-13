@@ -30,14 +30,14 @@ public class ProblemsService(IProblemsRepo problems, IJudge judge)
         {
             throw new ArgumentException("Solution cannot be null or empty.", nameof(solution));
         }
-
+        List<TestCase> testcases = await problems.GetTestCasesByIdAsync(problemId);
 
         // just return the submitted solution for now
         Console.WriteLine($"ProblemsService: Received submission for problem id: {problemId}, solution: {solution}");
         // return new SubmittedSolution(problemId, solution);
 
         // give it to the judge to get ispassed and fail cases
-        return await judge.CheckSolutionAsync(problemId, solution, lang);
+        return await judge.CheckSolutionAsync(problemId, solution, testcases, lang);
     }
 
 }

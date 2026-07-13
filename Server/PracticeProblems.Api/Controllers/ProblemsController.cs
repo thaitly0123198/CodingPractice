@@ -49,10 +49,11 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
         {
             return BadRequest("missing problem id");
         }
-        
+
         Console.WriteLine($"ProblemsController: Received submission for problem id: {id}, solution: {request.Solution}");
 
         // todo: check if the solution is correct or not, and return the result to the user
+        // todo: add time limit to prevent infinite loop, long runtime
         var result = await problemsService.GetResultsAsync(id, request.Solution);
 
         // todo: persist the user result to the database

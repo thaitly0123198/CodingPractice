@@ -16,6 +16,10 @@ export default function ProblemsTable () {
         })
     }, []);
 
+
+    // todo: add pagination; sort by difficulty, name; 
+    //       filter by difficulty, category(drop down: "Dynamic Programming", "Backtracking", "Bit Manipulation", "String"
+    //                                  "Array", "Two Pointers", "Divide and Conquer", "Math","Depth-First Search","Hash Table")
     return (
         <div>
         {

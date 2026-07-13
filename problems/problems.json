@@ -1,71 +1,355 @@
 [
-  {
-    "title": "Two Sum",
-    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
-    "difficulty": "Easy",
-    "examples": [
-      "Input: nums = [5,7,7,8,8,10], target = 8\nOutput: [3,4]",
-      "Input: nums = [5,7,7,8,8,10], target = 6\nOutput: [-1,-1]",
-      "Input: nums = [], target = 0\nOutput: [-1,-1]"
-    ],
-    "constraint": "2 <= nums.length <= 104\n-109 <= nums[i] <= 109\n-109 <= target <= 109\nOnly one valid answer exists.",
-    "category": "Array",
-    "testcases": [
-        {
-            "nums" : [2,7,11,15],
-            "target": 9,
-            "output": [0,1],
-            "ishidden": false
-        },
-        {
-            "nums" : [3,2,4],
-            "target": 6,
-            "output": [1,2],
-            "ishidden": false
-        },
-        {
-            "nums" : [3,3],
-            "target": 6,
-            "output": [0,1],
-            "ishidden": false
-        },        
-        {
-            "nums" : [2069, 62,67,411,815,813,6380,29374,181,80,8723,8504,888,8563, 985,98315,12093,389850,29374,11,0,723,504,88983,70563, 37],
-            "target": 2106,
-            "output": [0,25],
-            "ishidden": true
-        },
-        {
-            "nums" : [209, 2,7,11,15,13,380,29374,11,0,723,504,88,70563, 985,983],
-            "target": 592,
-            "output": [11,12],
-            "ishidden": true
-        },
-        {
-            "nums" : [2,7,11,15,12093,389850,29374,11,0,723,504,88983,70563, 37],
-            "target": 37,
-            "output": [8,13],
-            "ishidden": true
-        },
-        {
-            "nums" : [2,7,11,15,12093,38, 98, 50,29374,11,0,723,504,889, 83,70, 563, 37],
-            "target": 153,
-            "output": [14,15],
-            "ishidden": true
-        },
-        {
-            "nums" : [209, 2,7,11,15,13,380,29, 3, 74,11,0,723,50, 4,88,705, 63, 985,983],
-            "target": 1968,
-            "output": [11,12],
-            "ishidden": true
-        },
-        {
-            "nums" : [2069, 62,67,411,815,813,888,85, 63, 985,983, 15,120, 93,38, 9,8, 50,29374,11,2,723,504,88983,705, 63, 37],
-            "target": 17,
-            "output": [18,19],
-            "ishidden": true
-        }
-    ]
+    {
+  "_id": {
+    "$oid": "6a54304244b67905d24708fc"
   },
-
+  "title": "Two Sum",
+  "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.",
+  "difficulty": "Easy",
+  "examples": [
+    "Input: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0, 1].",
+    "Input: nums = [3,2,4], target = 6\nOutput: [1,2]",
+    "Input: nums = [3,3], target = 6\nOutput: [0,1]"
+  ],
+  "constraint": "2 <= nums.length <= 10^4\n\n\t-10^9 <= nums[i] <= 10^9\n\n\t-10^9 <= target <= 10^9\n\n\tOnly one valid answer exists.",
+  "category": "Array",
+  "testcases": [
+    {
+      "input": {
+        "nums": [
+          2,
+          7,
+          11,
+          15
+        ],
+        "target": 9
+      },
+      "output": [
+        0,
+        1
+      ],
+      "ishidden": false
+    },
+    {
+      "input": {
+        "nums": [
+          3,
+          2,
+          4
+        ],
+        "target": 6
+      },
+      "output": [
+        1,
+        2
+      ],
+      "ishidden": false
+    },
+    {
+      "input": {
+        "nums": [
+          3,
+          3
+        ],
+        "target": 6
+      },
+      "output": [
+        0,
+        1
+      ],
+      "ishidden": false
+    },
+    {
+      "input": {
+        "nums": [
+          2048,
+          128,
+          1024,
+          32,
+          16384,
+          8,
+          131072,
+          524288,
+          65536,
+          64,
+          4096,
+          262144,
+          32768,
+          4,
+          2,
+          16,
+          1,
+          8192,
+          512,
+          256
+        ],
+        "target": 524289
+      },
+      "output": [
+        7,
+        16
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          64,
+          1024,
+          32,
+          32768,
+          2048,
+          8,
+          1,
+          2,
+          65536,
+          4,
+          8192,
+          16,
+          16384,
+          512,
+          256,
+          131072,
+          128,
+          4096,
+          262144
+        ],
+        "target": 131080
+      },
+      "output": [
+        5,
+        15
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          2,
+          131072,
+          8,
+          1024,
+          8192,
+          16384,
+          16,
+          512,
+          32,
+          32768,
+          65536,
+          64,
+          2048,
+          128,
+          4096,
+          256,
+          4,
+          1
+        ],
+        "target": 4098
+      },
+      "output": [
+        0,
+        14
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          8,
+          2,
+          4,
+          256,
+          2048,
+          4096,
+          64,
+          128,
+          512,
+          8192,
+          32768,
+          16,
+          1024,
+          16384,
+          1,
+          32
+        ],
+        "target": 160
+      },
+      "output": [
+        7,
+        15
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          1024,
+          256,
+          16,
+          8192,
+          32768,
+          2,
+          512,
+          2048,
+          128,
+          64,
+          4096,
+          16384,
+          32,
+          8,
+          4,
+          1
+        ],
+        "target": 513
+      },
+      "output": [
+        6,
+        15
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          8192,
+          64,
+          2048,
+          4096,
+          4,
+          8,
+          16,
+          128,
+          32,
+          16384,
+          512,
+          2,
+          256,
+          1024,
+          32768,
+          1
+        ],
+        "target": 10
+      },
+      "output": [
+        5,
+        11
+      ],
+      "ishidden": true
+    },
+    {
+      "input": {
+        "nums": [
+          16384,
+          128,
+          512,
+          8192,
+          1024,
+          1,
+          4,
+          256,
+          32,
+          4096,
+          2048,
+          2,
+          8,
+          64,
+          16
+        ],
+        "target": 5120
+      },
+      "output": [
+        4,
+        9
+      ],
+      "ishidden": true
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6a54304244b67905d2470902"
+  },
+  "title": "Palindrome Number",
+  "description": "Given an integer x, return true if x is a palindrome, and false otherwise.",
+  "difficulty": "Easy",
+  "examples": [
+    "Input: x = 121\nOutput: true\nExplanation: 121 reads as 121 from left to right and from right to left.",
+    "Input: x = -121\nOutput: false\nExplanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.",
+    "Input: x = 10\nOutput: false\nExplanation: Reads 01 from right to left. Therefore it is not a palindrome."
+  ],
+  "constraint": "-2^31 <= x <= 2^31 - 1\n\n \n\nFollow up: Could you solve it without converting the integer to a string?",
+  "category": "Math",
+  "testcases": [
+    {
+      "input": {
+        "x": 121
+      },
+      "output": true,
+      "ishidden": false
+    },
+    {
+      "input": {
+        "x": -121
+      },
+      "output": false,
+      "ishidden": false
+    },
+    {
+      "input": {
+        "x": 10
+      },
+      "output": false,
+      "ishidden": false
+    },
+    {
+      "input": {
+        "x": -2147483648
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147459891
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147451972
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147444053
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147436134
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147428215
+      },
+      "output": false,
+      "ishidden": true
+    },
+    {
+      "input": {
+        "x": -2147420296
+      },
+      "output": false,
+      "ishidden": true
+    }
+  ]
+}
 ]

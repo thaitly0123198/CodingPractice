@@ -11,4 +11,6 @@ public interface IProblemsRepo
     Task<SubmittedSolution> PersistResultByIdTaskAsync(string id, string solution);
 
     Task<SubmittedSolution> PostSolutionAsync(string id, string solution);
+
+    Task<List<TestCase>> GetTestCasesByIdAsync(string id);
 }

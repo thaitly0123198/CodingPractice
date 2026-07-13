@@ -2,8 +2,12 @@ from bisect import bisect_left
 from typing import List
 
 class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        l = bisect_left(nums, target)
-        r = bisect_left(nums, target + 1)
-        return [-1, -1] if l == r else [l, r - 1]
-    
+    def addBinary(self, a: str, b: str) -> str:
+        ans = []
+        i, j, carry = len(a) - 1, len(b) - 1, 0
+        while i >= 0 or j >= 0 or carry:
+            carry += (0 if i < 0 else int(a[i])) + (0 if j < 0 else int(b[j]))
+            carry, v = divmod(carry, 2)
+            ans.append(str(v))
+            i, j = i - 1, j - 1
+        return "".join(ans[::-1])

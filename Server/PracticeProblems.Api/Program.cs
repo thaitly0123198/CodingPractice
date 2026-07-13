@@ -1,11 +1,12 @@
 using PracticeProblems.Api.Controllers;
 using PracticeProblems.Services.MainServices;
+using PracticeProblems.Services.FileManip;
 using PracticeProblems.Core.Interfaces;
 using PracticeProblems.Data;
 using PracticeProblems.Data.Repo;
 
 
-var builder = WebApplication.CreateBuilder();
+var builder = WebApplication.CreateBuilder(args);
 
 
 // Add services
@@ -24,6 +25,9 @@ builder.Services.AddSingleton<ProblemsController>();
 // add services
 builder.Services.AddSingleton<ProblemsService>();
 builder.Services.AddSingleton<IJudge, JudgeService>();
+builder.Services.AddTransient<SolutionFileManagement>();
+builder.Services.AddTransient<ProcessManagement>();
+
 
 // add db repo
 builder.Services.AddSingleton<IProblemsRepo, ProblemsRepo>();
