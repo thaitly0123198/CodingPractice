@@ -1,52 +1,43 @@
 import { useState, useEffect } from "react";
 
-export default function({problemId}) {
+export default function({placeholder, submitHandler}) {
     const [solution, setSolution] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [needSubmit, setNeedSubmit] = useState(false);
 
-    async function submitSolution(e, solution) {
+    useEffect(() => {
+        setSolution(placeholder ?? "");
+    }, [placeholder]);
+
+    function handleKeyDown(e) {
+        if (e.key !== "Tab") return;
         e.preventDefault();
-        setIsSubmitting(true);
-
-        // send solution by id to backend
-        try {
-            const response = await fetch(`/nav/problems/submission/${problemId}`, {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json", 
-                },
-                body: JSON.stringify({id: problemId, solution: solution})
-            }).then(async (res) => {
-
-                const apires = await res.json().catch(() => null);
-                console.log((apires != null || apires != {}) ? apires : "No response from server");
-
-            });
-        } catch (error) {
-            console.error("Error submitting solution:", error); 
-        } finally {
-            setIsSubmitting(false);
-        }
+        const el = e.target;
+        const start = el.selectionStart, end = el.selectionEnd;
+        const indent = "    "; // 4 spaces, never \t
+        const next = solution.slice(0, start) + indent + solution.slice(end);
+        setSolution(next);
+        // controlled input: react re-render resets the caret n put it back after paint
+        requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = start + indent.length; });
     }
- 
- 
+    
     return (
         <div>
-            <form onSubmit={(e) => submitSolution(e, solution)}>
-                <label htmlFor={`solution-submission`}>Solution:</label>
+            <form onSubmit={(e) => submitHandler(e, solution)}>
+                <label htmlFor={`solution-submission`}>Your Python Solution (Indentation = 4 spaces):</label>
                 <div></div>
                 <textarea 
-                    placeholder="Paste your solution here..." 
+                    // placeholder={placeholder ?? "Paste your solution here.."}
                     rows={30} cols={100}
                     id={`solution-submission`}
                     onChange={(e) => setSolution(e.target.value)}
+                    value={solution}
+                    onKeyDown={handleKeyDown}
                 >   
                 </textarea>
                 <div></div>
                 <input type="submit" 
                     value={isSubmitting ? "Sending..." : "Submit"} 
-                    disabled={isSubmitting || solution.trim() === ""} />
+                />
             </form>
         </div>
     )

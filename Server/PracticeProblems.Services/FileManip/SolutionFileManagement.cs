@@ -11,42 +11,17 @@ namespace PracticeProblems.Services.FileManip;
 public class SolutionFileManagement
 {
     // build the full solution file with the submitted solution to run against test cases 
-    public async Task BuildSolutionFileAsync(string solutionPath, string solution, BsonValue input, string lang)
+    public async Task BuildSolutionFileAsync(string solution, string solutionFuncName, string solutionPath, string lang)
     {
-        Console.WriteLine($"SolutionService.cs->BuildSolutionFileAsync->input: {input}.");
-
         // Create a file to write to.
         if (!File.Exists(solutionPath))
         {
             if (lang == "python")
             {
-                var imports = """
-                            import json
-                            import sys
-                            from typing import *
-                            """;
-                var main = $$$"""
-                            if __name__ == "__main__":
-                                # read whole input
-                                input = sys.stdin.read()
-                                
-                                # parse json to dict
-                                data = json.loads(input)
+                var importStr = BuildSolutionImports(lang);
+                var mainStr = BuildSolutionMain(solutionFuncName, lang);
 
-                                # get typed data
-                                if data is not None:
-                                    a = data.get("a")
-                                    b = data.get("b")
-                                    if a is not None and b is not None:
-                                        sol = Solution().addBinary(a, b)
-                                        print(json.dumps(sol))
-                                    else:
-                                        print("Invalid input.")
-                            """;
-
-                await File.AppendAllTextAsync(solutionPath, imports);
-                await File.AppendAllTextAsync(solutionPath, solution);
-
+                await File.AppendAllTextAsync(solutionPath, importStr + "\n" + solution + "\n\n" + mainStr);
             }
 
         }
@@ -63,6 +38,7 @@ public class SolutionFileManagement
         }
     }
 
+
     public string BuildSolutionPath(string solution, string lang)
     {
         string ext = BuildFileExtension(lang);
@@ -78,5 +54,78 @@ public class SolutionFileManagement
         {
             throw new ArgumentException($"Unsupported programming language: {language}");
         }
+    }
+
+    private static string BuildSolutionImports(string lang = "python")
+    {
+        string imports = string.Empty;
+        if (lang == "python")
+        {
+            imports =
+                    """
+                    import io, contextlib, json, sys
+                    import math
+                    import re
+                    from bisect import bisect_left, bisect_right
+                    from collections import Counter, defaultdict, deque
+                    from functools import cache, cmp_to_key, reduce
+                    from heapq import heapify, heappop, heappush, nlargest
+                    from itertools import accumulate, chain, count, pairwise
+                    from math import ceil, dist, factorial, gcd, inf, sqrt
+                    from operator import xor
+                    from string import ascii_lowercase
+                    from typing import Deque, List, Optional, Tuple
+                    """;
+        }
+        return imports;
+    }
+
+    private static string BuildSolutionMain(string functionName, string lang = "python")
+    {
+        string main = string.Empty;
+        // class Solution:
+        //     def addBinary(self, a: str, b: str) -> str:
+        //     ans = []
+        //     i, j, carry = len(a) - 1, len(b) - 1, 0
+        //     while i >= 0 or j >= 0 or carry:
+        //         carry += (0 if i < 0 else int(a[i])) +(0 if j < 0 else int(b[j]))
+        //         carry, v = divmod(carry, 2)
+        //         ans.append(str(v))
+        //         i, j = i - 1, j - 1
+        //     return "".join(ans[::- 1])
+          
+        if (lang == "python")
+        {
+            main = $$$"""
+                    if __name__ == "__main__":
+                        # read whole input
+                        payload = sys.stdin.read()
+                        
+                        # parse json to dict
+                        data = json.loads(payload)
+
+                        buf = io.StringIO()
+                        # user prints land in buf, not stdout
+                        # so stdout only gets the result from the solution run
+                        try:
+                            with contextlib.redirect_stdout(buf):          
+                                # get typed data
+                                if data is not None:
+                                    fn = getattr(Solution(), "{{{functionName}}}")
+                                    if isinstance(data, dict):
+                                        # data is a dict i.e {"nums": [...], "target": 9} ->  fn(nums=[...], target=9)
+                                        result = fn(**data)
+                                    else:
+                                        # data is a type like [1,2,3] or 121  ->  fn([1,2,3])
+                                        result = fn(data)
+                            body = json.dumps({"ok": True, "result": result, "stdout": buf.getvalue()})   
+                        except Exception as e:
+                            body = json.dumps({"ok": False, "error": f"{type(e).__name__}: {e}", "stdout": buf.getvalue()})
+                        sys.stdout.write(body)
+                    """;
+
+        }
+
+        return main;
     }
 }

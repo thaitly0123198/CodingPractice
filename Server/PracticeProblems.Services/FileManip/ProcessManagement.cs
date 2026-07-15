@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using PracticeProblems.Core.Entities;
 
 namespace PracticeProblems.Services.FileManip;
@@ -8,58 +9,78 @@ namespace PracticeProblems.Services.FileManip;
 // this should die at the end of solution checking -> addTransient
 public class ProcessManagement
 {
-    public async Task<Result> ExecuteFileAsync(string solutionPath, string stdinJson)
+
+    public async Task<SolutionProgramOutput> ExecuteFileAsync(string solutionPath, string stdinJson, string lang = "python")
     {
+        SolutionProgramOutput solOutput = new();
 
-        var psi = new ProcessStartInfo
+        if (lang == "python")
         {
-            FileName = "python3", // todo: assuming python is installed and in PATH, change in PROD
-            Arguments = $"{solutionPath}",
-            RedirectStandardInput = true,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
-
-        // guarantees Dispose() gets called, no worry about forgetting to kill it
-        using var process = Process.Start(psi) 
-                        ?? throw new InvalidOperationException("Failed to start the Python process.");
-
-        try
-        {
-            Console.WriteLine($"JudgeService.cs: Running solution file with input: {stdinJson}");
-            string testInputChars = JsonSerializer.Serialize(stdinJson);
-            await process.StandardInput.WriteAsync(testInputChars);
-            process.StandardInput.Close();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"JudgeService.cs: Error running solution file: {ex.Message}");
-            throw;
-        }
-
-        try
-        {
-            await process.WaitForExitAsync();
-            var output = await process.StandardOutput.ReadToEndAsync();
-            var error = await process.StandardError.ReadToEndAsync();
-
-            if (!string.IsNullOrEmpty(error))
+            var psi = new ProcessStartInfo
             {
-                Console.WriteLine($"JudgeService.cs: Error from solution file: {error}");
-                return new Result(error);
-                // throw new InvalidOperationException($"Error from solution file: {error}");
+                FileName = "python3", // todo: assuming python is installed and in PATH, change in PROD
+                Arguments = $"{solutionPath}",
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            // guarantees Dispose() gets called, no worry about forgetting to kill it
+            using var process = Process.Start(psi)
+                            ?? throw new InvalidOperationException("Failed to start the Python process.");
+
+
+            Console.WriteLine($"ProcessManagement.cs: Running solution file with input: {stdinJson}");
+
+            await process.StandardInput.WriteAsync(stdinJson);
+            process.StandardInput.Close();
+
+            // infinite loops, timeout guard
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+
+            // start both ReadToEndAsync tasks before awaiting either,
+            //  so a large stdout can't fill its pipe buffer while you're draining stderr
+            var outTask = process.StandardOutput.ReadToEndAsync(cts.Token);
+            var errTask = process.StandardError.ReadToEndAsync(cts.Token);
+            string output = await outTask;
+            string error = await errTask;
+
+            try
+            {
+
+                await process.WaitForExitAsync();
+
+                // if output from script is empty -> script failed to compile
+                if (string.IsNullOrWhiteSpace(output))
+                    return new SolutionProgramOutput { Ok = false, CompilationError = "Compilation Error!" };
+
+                try
+                {
+                    // deserialize output into SolutionProgramOutput
+                    // if deserialized value is null, solution FAILS
+                    solOutput = JsonSerializer.Deserialize<SolutionProgramOutput>(output,
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new SolutionProgramOutput { Ok = false };
+
+                    if (!solOutput.Ok)
+                    {
+                        solOutput.RuntimeError = "Runtime Error!";
+                    }
+                    return solOutput;
+                }
+                catch (JsonException)
+                {
+                    Console.Write($"ProcessManagement.cs->ExecuteFileAsync: JsonException Error");
+                    return new SolutionProgramOutput() { CompilationError = $"Server unavailable, try again!" };
+                }
             }
-
-            Console.WriteLine($"JudgeService.cs: Output from solution file: {output}");
+            catch (OperationCanceledException)
+            {
+                process.Kill(entireProcessTree: true);   // entireProcessTree: catches child processes it spawned
+                return new SolutionProgramOutput { Ok = false, TimeoutError = "Time limit exceeded" };
+            }
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"JudgeService.cs: Error reading output from solution file: {ex.Message}");
-            throw;
-        }
-
-        return new Result();
+        return solOutput;
     }
 }

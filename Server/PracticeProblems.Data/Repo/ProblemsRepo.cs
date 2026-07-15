@@ -33,22 +33,14 @@ public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
         using var cursor = await _problems.FindAsync(filter, options);
         var testCases = await cursor.FirstOrDefaultAsync();
 
+        if (testCases == null)
+        {
+            throw new ArgumentNullException("Error fetching problem.");
+        }
+        
         // todo: when testcase is null, not found
-        return testCases ?? new List<TestCase>();
+        return testCases;
     }
 
-    public async Task<SubmittedSolution> PostSolutionAsync(string id, string solution)
-    {
-        // todo: check if the solution is correct or not, and return the result to the user
-        // for now, just return the submitted solution
-        return await Task.FromResult(new SubmittedSolution(id, solution));
-    }
-
-    public async Task<SubmittedSolution> PersistResultByIdTaskAsync(string id, string solution)
-    {
-        // todo: persist the submitted solution to the database
-        // for now, just return the submitted solution
-        return await Task.FromResult(new SubmittedSolution(id, solution));  
-    }
 }
 
