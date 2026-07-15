@@ -25,6 +25,9 @@ public class Problem
     public string Constraint { get; set; } = null!;
     [BsonElement("testcases")]
     public List<TestCase> TestCases { get; set; } = new();
+    [BsonElement("difficultyNum")]
+    public int DifficultyNum { get; set; }
+
     [BsonElement("solution")] public SolutionStub Solution { get; set; } = null!;
 
     public class SolutionStub
@@ -32,4 +35,5 @@ public class Problem
         [BsonElement("functionName")] public string FunctionName { get; set; } = string.Empty;
         [BsonElement("stubs")] public string Stubs { get; set; } = string.Empty;
     }
+
 }

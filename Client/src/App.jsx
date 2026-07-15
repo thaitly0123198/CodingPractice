@@ -35,12 +35,12 @@ function Navbar() { return (
     <nav className="navbar">
     <Link to="/home" className="home"> Coding Practice == </Link>
     <Link to="/problems" className="problems"> Practice == </Link>
-    <Link to="/rank" className="ranklist"> Rank == </Link>
+    {/* <Link to="/rank" className="ranklist"> Rank == </Link>
     <Link to={{
         pathname: "/profile",
         search: "?sort=name",
         hash: "#results"
-    }} className="profile"> Profile == </Link>
+    }} className="profile"> Profile == </Link> */}
     </nav>
 );}
 
@@ -52,12 +52,8 @@ export default function App() {
                 <Routes>
                     <Route path="/home" element={<  HomePage />} />
                     <Route path="/problems" element={< ProblemsPage />} />
-                    <Route path="/rank" element={<h1>Rank</h1>} />
-                    <Route path="/profile" element={
-                        // <RequireAuth>
-                            <h1>Profile</h1>
-                        /* </RequireAuth> */
-                    } />
+                    {/* <Route path="/rank" element={<h1>Rank</h1>} /> */}
+                    {/* <Route path="/profile" element={<h1>Profile</h1>}/> */}
                     <Route path="/problems/:id" element={<SingleProblemPage/>}/>
                     <Route path="*" element={<Navigate to="/home" />} />    
                 </Routes>

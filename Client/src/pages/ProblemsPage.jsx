@@ -4,7 +4,7 @@ import ProblemsTable from '../components/ProblemsTable';
 export default function Practice () {
     return (
         <div>
-            <div> Practice Problem</div>
+            <h1> Practice Problem</h1>
             <ProblemsTable />
         </div>
     )

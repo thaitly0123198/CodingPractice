@@ -1,7 +1,8 @@
+using System.Data.Common;
+using System.Reflection;
 using MongoDB.Driver;
 using PracticeProblems.Core.Entities;
 using PracticeProblems.Core.Interfaces;
-
 
 namespace PracticeProblems.Data.Repo;
 
@@ -10,11 +11,24 @@ public class ProblemsRepo(MongoContext mongoContext) : IProblemsRepo
     // get the Problem collection from mongo
     private readonly IMongoCollection<Problem> _problems = mongoContext.Problems;
 
-    public async Task<List<Problem>> GetProblemsAsync()
+    public async Task<List<ProblemsChunk>> GetProblemsAsync(int page, int pageSize, bool diffDesc = false)
     { 
+        if (diffDesc)
+        {
+            return await _problems.Find(_ => true)
+                .SortByDescending(p => p.DifficultyNum) // sort default by difficulty
+                .ThenBy(p => p.Id)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .Project(p => new ProblemsChunk { Id = p.Id, Title = p.Title, Difficulty = p.Difficulty })
+                .ToListAsync();
+        }
         return await _problems.Find(_ => true)
-                .SortBy(p => p.Difficulty) // Sort lowest to highest
-                .Limit(30)  
+                .SortBy(p => p.DifficultyNum) // sort default by difficulty
+                .ThenBy(p => p.Id)
+                .Skip((page - 1) * pageSize)
+                .Limit(pageSize)
+                .Project(p => new ProblemsChunk { Id = p.Id, Title = p.Title, Difficulty = p.Difficulty })
                 .ToListAsync();
     }
 

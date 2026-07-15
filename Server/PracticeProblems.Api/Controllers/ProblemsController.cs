@@ -15,10 +15,10 @@ public class ProblemsController(ProblemsService problemsService) : ControllerBas
 {
     // GET
     [HttpGet]
-    public async Task<ActionResult<List<ProblemsChunkResponse>>> GetProblems()
+    public async Task<ActionResult<List<ProblemsChunkResponse>>> GetProblems([FromQuery] int page, [FromQuery] int pageSize, [FromQuery] bool diffDesc)
     {
         // getting the actual data from the db thru the service layer
-        var problemsList = await problemsService.GetProblemsAsync();
+        var problemsList = await problemsService.GetProblemsAsync(page, pageSize, diffDesc);
 
     
         return Ok(problemsList.Select(p => new ProblemsChunkResponse(p.Id, p.Title, p.Difficulty)).ToList());
