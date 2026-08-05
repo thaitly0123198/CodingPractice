@@ -8,12 +8,14 @@ using PracticeProblems.Data.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Railway inject PORT. Local Docker defaults to 8080.
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
-// Add services
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-// add mongodb
+//  mongodb
 var mongoSettings = builder.Configuration.GetSection("MongoDb").Get<MongoDbSettings>() ?? new MongoDbSettings();
 builder.Services.AddSingleton(mongoSettings);
 builder.Services.AddSingleton<MongoContext>();

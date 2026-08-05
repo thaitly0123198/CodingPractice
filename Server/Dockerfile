@@ -23,7 +23,7 @@ RUN apt-get update \
 
 COPY --from=build /app/publish .
 
+# Local default; Railway overrides via PORT (see Program.cs).
 EXPOSE 8080
-ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
 ENTRYPOINT ["dotnet", "PracticeProblems.Api.dll"]
