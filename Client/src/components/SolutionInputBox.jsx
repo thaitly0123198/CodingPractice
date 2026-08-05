@@ -24,7 +24,6 @@ export default function({placeholder, submitHandler}) {
         <div>
             <form onSubmit={(e) => submitHandler(e, solution)}>
                 <label htmlFor={`solution-submission`}>Your Python Solution (Indentation = 4 spaces):</label>
-                <div></div>
                 <textarea 
                     // placeholder={placeholder ?? "Paste your solution here.."}
                     rows={30} cols={100}
@@ -34,8 +33,8 @@ export default function({placeholder, submitHandler}) {
                     onKeyDown={handleKeyDown}
                 >   
                 </textarea>
-                <div></div>
                 <input type="submit" 
+                    className="px-btn"
                     value={isSubmitting ? "Sending..." : "Submit"} 
                 />
             </form>

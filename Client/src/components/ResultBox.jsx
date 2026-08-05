@@ -12,7 +12,7 @@ export default function({resultRes}){
         {
             if (resultRes.isPass)
             {
-                setResult("Pass!");
+                setResult("Pass");
                 setErrorMessage("");
                 setFailcase("");
             }
@@ -21,8 +21,8 @@ export default function({resultRes}){
                 if (resultRes.compilationErrorMessage)
                     setErrorMessage(resultRes.compilationErrorMessage)
                 else
-                    setErrorMessage(resultRes.RuntimeErrorMessage)
-                setResult("Fail!");
+                    setErrorMessage(resultRes.runtimeErrorMessage)
+                setResult("Fail");
                 setFailcase(resultRes.failedTestcase)
             }
             console.log(resultRes.failedTestcase)
@@ -30,8 +30,8 @@ export default function({resultRes}){
     }, [resultRes]);
     return (
         <div>
-             {rs && <h2>{rs}</h2>}
-            {errorMessage && <pre>{errorMessage}</pre>}
+             {rs && <pre className={`chip chip--${resultRes.isPass ? 'pass' : 'fail'}`}>{rs}</pre>}
+            {errorMessage && <div>{errorMessage}</div>}
             {fc && <div>Failed on input: {fc.input}</div>}
         </div>
     )

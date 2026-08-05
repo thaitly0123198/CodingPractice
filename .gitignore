@@ -80,3 +80,6 @@ desktop.ini
 .env.*
 !.env.example
 appsettings.*.local.json
+appsettings.Development.json
+problems/problemsets.json
+problems/problems.json

@@ -49,19 +49,21 @@ export default function() {
             <div className="problem-description">
             {
                 // console.log(problem),
-                (problem === null || problem.empty) ? (<div>Loading problem...</div>) : 
+                (!problem || problem.empty) ? (<div>Loading problem...</div>) : 
                 (
                     <div>
                         <h1>{problem.title}</h1>
-                        <h3>{`Category: ${problem.category}`}</h3>
+                        <p>{`Category: ${problem.category}`}</p>
                         <div>{problem.description}</div><br />
-                        <div style={{ fontWeight: 'bold' }}>{`Constraint(s): ${problem.constraint}`}</div><br />
-                        <ul>
-                            {
-                                (problem.examples == null || problem.examples.length == 0) ? (<div>Loading examples...</div>) :
-                                problem.examples.map((ex, i)=> (<li key={i}>{ex}</li>))
-                            }
-                        </ul>
+                        <strong>{`Constraint(s): ${problem.constraint}`}</strong><br />
+                        {
+                            (!problem.examples || problem.examples.length == 0) ? (<div>Loading examples...</div>) :
+                            (
+                                <ul>
+                                    {problem.examples.map((ex, i)=> (<li key={i}>{ex}</li>))}
+                                </ul>
+                            )
+                        }
                     </div>
                 )
             }

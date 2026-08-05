@@ -9,7 +9,7 @@ export default function ProblemsTable () {
     const [diffDesc, setSortDifficultyDescending] = useState(false);
 
     useEffect(() => {
-        const res = fetch(`nav/problems?page=${page}&pageSize=${pageSize}&diffDesc=${diffDesc}`, {
+        const res = fetch(`/nav/problems?page=${page}&pageSize=${pageSize}&diffDesc=${diffDesc}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         }).then(async (res) => {
@@ -26,8 +26,10 @@ export default function ProblemsTable () {
     return (
     <div>
         <div>
-            <label>Sort by Difficulty: </label><br/>
-            <button onClick={() => {
+            <span>Sort by Difficulty: </span>
+            <button 
+            className="px-btn px-btn--2"
+            onClick={() => {
                 setSortDifficultyDescending(d => !d);
                 setPage(1);
             }}>
@@ -43,8 +45,7 @@ export default function ProblemsTable () {
                         <tr>
                         <th>Title</th>
                         <th>Difficulty</th>
-                        <th>Status</th>
-                        <th />
+                        <th>Action</th>
                         </tr>
                     </thead>
 
@@ -52,12 +53,12 @@ export default function ProblemsTable () {
                         {problems.map((p) => (
                             <tr key={p.id}>
                                 <td>{p.title}</td>
-                                <td><span>{p.difficulty}</span></td>
+                                <td><span  className={`chip chip--${p.difficulty.toLowerCase()}`} >{p.difficulty}</span></td>
                                 {/* add per user mutations */}
                                 {/* <td>{solved.has(p.id) ? <span className="solved">Solved</span> : <span className="muted">—</span>}</td> */}
                                 <td>
                                     {/* button to take user to a page to solve problem */}
-                                <Link className="btn btn-small" to={`${p.id}`} state={{ id: p.id }}>
+                                <Link className="px-btn" to={`${p.id}`} state={{ id: p.id }}>
                                     Solve
                                 </Link>
                                 </td>
@@ -69,8 +70,8 @@ export default function ProblemsTable () {
         }
         </div>
         <div>
-            <button disabled={page==1} onClick={()=>setPage(p => p - 1)}>Previous page</button>
-            <button disabled={page * pageSize >= 500} onClick={()=> setPage(p => p + 1)}>Next Page</button>
+            <button className="px-btn" disabled={page==1} onClick={()=>setPage(p => p - 1)}>Previous page</button>
+            <button className="px-btn"disabled={page * pageSize >= 500} onClick={()=> setPage(p => p + 1)}>Next Page</button>
             <div>Page {page} of {Math.ceil(500 / pageSize)}</div>
             <label>
                 Page size: {" "}
