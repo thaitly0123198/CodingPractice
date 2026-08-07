@@ -9,11 +9,17 @@ namespace PracticeProblems.Services.FileManip;
 // this should die at the end of solution checking -> addTransient
 public class ProcessManagement
 {
+    // Resource limits for the judge process
+    // Judge__TimeoutSeconds = 5
+    // Judge__MaxOutputBytes = 262144      # 256 KB
+    // Judge__MaxMemoryBytes = 134217728   # 128 MB
+    // Judge__MaxConcurrent  = 2
 
     public async Task<SolutionProgramOutput> ExecuteFileAsync(string solutionPath, string stdinJson, string lang = "python")
     {
         SolutionProgramOutput solOutput = new();
-        var timeoutSeconds = 5;
+        int timeoutSeconds = 5;
+        const long maxMemoryBytes = 128L * 1024 * 1024;        // 128 MB
 
         if (lang == "python")
         {
@@ -48,6 +54,13 @@ public class ProcessManagement
                 {
                     process.Kill(entireProcessTree: true);
                     return new SolutionProgramOutput{ Ok = false, TimeoutError = "Time Limit Exceeded"};
+                }
+                
+                process.Refresh(); // refresh cached process info
+                if (process.WorkingSet64 > maxMemoryBytes)
+                {
+                    process.Kill(entireProcessTree: true);
+                    return new SolutionProgramOutput{ Ok = false, RuntimeError = "Memory Limit Exceeded"};
                 }
                 
                 await Task.Delay(50); //check every 50ms
