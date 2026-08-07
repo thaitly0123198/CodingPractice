@@ -7,6 +7,11 @@ using PracticeProblems.Services.FileManip;
 
 namespace PracticeProblems.Services.MainServices;
 
+// Resource limits for the judge process
+// Judge__TimeoutSeconds = 5
+// Judge__MaxOutputBytes = 262144      # 256 KB
+// Judge__MaxMemoryBytes = 134217728   # 128 MB
+// Judge__MaxConcurrent  = 2
 public class JudgeService : IJudge
 {
     ProcessManagement judgeProcess = new();
@@ -41,6 +46,11 @@ public class JudgeService : IJudge
 
                 // run the solution file with test case inputs, and get its outputs as SolutionProgramOutput
                 SolutionProgramOutput programOutput = await judgeProcess.ExecuteFileAsync(solutionPath, testInput);
+
+                if (!string.IsNullOrEmpty(programOutput.TimeoutError))
+                {
+                    return new Result {IsPassed = false,RuntimeErrorMessage = programOutput.TimeoutError};
+                }
 
                 // compare the output with the expected output for each test case
                 bool isPass = CompareOutputWithTestOutput(programOutput.Result, JsonNode.Parse(testOutput));
